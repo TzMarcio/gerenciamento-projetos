@@ -6,6 +6,9 @@ import br.com.tzmarcio.gerenciamento_projetos.repository.ProjetoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ProjetoService {
 
@@ -24,6 +27,18 @@ public class ProjetoService {
         }
 
         this.repository.delete(projeto);
+    }
+
+    public List<Projeto> listar() {
+        return this.repository.findAll();
+    }
+
+    public Optional<Projeto> buscarPorId(final Long id) {
+        return this.repository.findById(id);
+    }
+
+    public void alterar(final Projeto projeto) {
+        this.repository.save(projeto);
     }
 
 }
