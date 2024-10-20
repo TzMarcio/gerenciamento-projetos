@@ -25,24 +25,24 @@ public class ProjetoServiceTest {
 
     @Test
     public void testCriarProjeto() {
-        Projeto projeto = new Projeto();
+        final Projeto projeto = new Projeto();
         projeto.setNome("Novo Projeto");
 
         when(repository.save(projeto)).thenReturn(projeto);
 
-        Projeto criado = service.salvar(projeto);
+        final Projeto criado = service.salvar(projeto);
         assertEquals("Novo Projeto", criado.getNome());
     }
 
     @Test
     public void testBuscarProjetoPorId() {
-        Projeto projeto = new Projeto();
+        final Projeto projeto = new Projeto();
         projeto.setId(1L);
         projeto.setNome("Projeto Existente");
 
         when(repository.findById(1L)).thenReturn(Optional.of(projeto));
 
-        Optional<Projeto> resultado = service.buscarPorId(1L);
+        final Optional<Projeto> resultado = service.buscarPorId(1L);
         assertTrue(resultado.isPresent());
         assertEquals("Projeto Existente", resultado.get().getNome());
     }
