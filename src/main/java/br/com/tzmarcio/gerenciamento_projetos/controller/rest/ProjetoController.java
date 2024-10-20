@@ -14,8 +14,12 @@ import java.util.Optional;
 @RequestMapping("/api/projetos")
 public class ProjetoController {
 
+    private final ProjetoService service;
+
     @Autowired
-    private ProjetoService service;
+    ProjetoController(final ProjetoService service) {
+        this.service = service;
+    }
 
     @PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public ResponseEntity<Projeto> criar(final Projeto projeto){

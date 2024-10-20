@@ -6,14 +6,19 @@ import br.com.tzmarcio.gerenciamento_projetos.repository.ProjetoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.naming.NoPermissionException;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ProjetoService {
 
+    private final ProjetoRepository repository;
+
     @Autowired
-    private ProjetoRepository repository;
+    ProjetoService(final ProjetoRepository repository) {
+        this.repository = repository;
+    }
 
     public Projeto salvar(final Projeto projeto) {
         return this.repository.save(projeto);
@@ -23,7 +28,7 @@ public class ProjetoService {
         Projeto projeto = this.repository.findById(id).orElseThrow(() -> new Exception("Projeto não encontrado"));
 
         if(projeto.getStatus() == Status.INICIADO || projeto.getStatus() == Status.EM_ANDAMENTO || projeto.getStatus() == Status.ENCERRADO) {
-            throw new Exception("Não é possível excluir um projeto iniciado ou encerrado.");
+            throw new NoPermissionException("Não é possível excluir um projeto iniciado ou encerrado.");
         }
 
         this.repository.delete(projeto);

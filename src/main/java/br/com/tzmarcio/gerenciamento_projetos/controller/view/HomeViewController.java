@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeViewController {
 
+    private static final String PATH_LISTAGEM = "projetos-listagem";
+
     @GetMapping("/")
     public String home() {
-        return "projetos/projetos";
+        return PATH_LISTAGEM;
     }
 }
