@@ -1,13 +1,15 @@
 package br.com.tzmarcio.gerenciamento_projetos.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Data
+@Builder
 @EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "pessoa")
 public class Pessoa {

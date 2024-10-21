@@ -15,11 +15,11 @@ public class Membros {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "idprojeto", nullable = false)
+    @JoinColumn(name = "idprojeto", nullable = false, updatable = false)
     private Projeto projeto;
 
     @ManyToOne
-    @JoinColumn(name = "idpessoa", nullable = false)
+    @JoinColumn(name = "idpessoa", nullable = false, updatable = false)
     private Pessoa pessoa;
 
 }

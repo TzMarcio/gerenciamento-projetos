@@ -19,6 +19,9 @@ public class ProjetoViewController {
     private static final String PATH_CRIAR = "projeto-criar";
 
     private static final String VAR_PROJETO = "projeto";
+    private static final String VAR_PESSOAS = "pessoas";
+    private static final String VAR_STATUS = "status";
+    private static final String VAR_RISCOS = "riscos";
 
     private final ProjetoService service;
 
@@ -35,21 +38,29 @@ public class ProjetoViewController {
 
     @GetMapping("/novo")
     public String criar(final Model model) {
-        model.addAttribute("status", Status.values());
-        model.addAttribute("riscos", Risco.values());
+        model.addAttribute(VAR_STATUS, Status.values());
+        model.addAttribute(VAR_RISCOS, Risco.values());
         model.addAttribute(VAR_PROJETO, new Projeto());
         return PATH_CRIAR;
     }
 
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable final Long id, final Model model) {
-        model.addAttribute(VAR_PROJETO, service.buscarPorId(id).orElse(null));
+        final Projeto entidade = service.buscarPorId(id);
+        model.addAttribute(VAR_PROJETO, entidade);
+        model.addAttribute(VAR_STATUS, Status.values());
+        model.addAttribute(VAR_RISCOS, Risco.values());
+        model.addAttribute(VAR_PESSOAS, entidade.getMembros());
         return PATH_CRIAR;
     }
 
     @GetMapping("/visualizar/{id}")
     public String visualizar(@PathVariable final Long id, final Model model) {
-        model.addAttribute(VAR_PROJETO, service.buscarPorId(id).orElse(null));
+        final Projeto entidade = service.buscarPorId(id);
+        model.addAttribute(VAR_PROJETO, entidade);
+        model.addAttribute(VAR_STATUS, Status.values());
+        model.addAttribute(VAR_RISCOS, Risco.values());
+        model.addAttribute(VAR_PESSOAS, entidade.getMembros());
         model.addAttribute("modo", "visualizar");
         return PATH_CRIAR;
     }
