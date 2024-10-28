@@ -21,13 +21,13 @@ public class PessoaController {
     }
 
     @GetMapping("/autocomplete/gerentes")
-    public List<Pessoa> autocompleteGerentes(@RequestParam("nome") final String nome) {
-        return this.service.buscarGerentes(nome);
+    public ResponseEntity<List<Pessoa>> autocompleteGerentes(@RequestParam("nome") final String nome) {
+        return ResponseEntity.ok(this.service.buscarGerentes(nome));
     }
 
     @GetMapping("/autocomplete/funcionarios")
-    public List<Pessoa> autocompleteFuncionarios(@RequestParam("nome") final String nome) {
-        return this.service.buscarFuncionarios(nome);
+    public ResponseEntity<List<Pessoa>> autocompleteFuncionarios(@RequestParam("nome") final String nome) {
+        return ResponseEntity.ok(this.service.buscarFuncionarios(nome));
     }
 
     @PostMapping
