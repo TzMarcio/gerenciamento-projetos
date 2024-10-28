@@ -104,7 +104,10 @@
                     <th>Nome</th>
                     <th>Data de Nascimento</th>
                     <th>CPF</th>
-                    <th>Ações</th>
+
+                    <c:if test="${modo != 'visualizar'}">
+                        <th>Ações</th>
+                    </c:if>
                 </tr>
                 </thead>
                 <tbody>
@@ -113,9 +116,12 @@
                             <td>${pessoa.nome}</td>
                             <td>${pessoa.dataNascimento}</td>
                             <td>${pessoa.cpf}</td>
-                            <td>
-                                <button type="button" class="btn btn-danger remover-pessoa">Remover</button>
-                            </td>
+
+                            <c:if test="${modo != 'visualizar'}">
+                                <td>
+                                    <button type="button" class="btn btn-danger remover-pessoa">Remover</button>
+                                </td>
+                            </c:if>
                         </tr>
                     </c:forEach>
                 </tbody>
